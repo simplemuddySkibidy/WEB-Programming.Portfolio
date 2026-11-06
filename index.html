@@ -4,102 +4,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nurbolot — iOS Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header" id="home">
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme" aria-pressed="false">
-      <span class="theme-toggle__icon theme-toggle__icon--moon">☾</span>
-      <span class="theme-toggle__icon theme-toggle__icon--sun">☀</span>
-    </button>
-    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav" id="nav" aria-label="Main">
+  <header>
+    <button id="theme">☾</button>
+    <button id="burger">☰</button>
+    <nav id="nav">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
-      <a class="icon-link" href="https://github.com/simplemuddySkibidy" target="_blank" rel="noopener" aria-label="GitHub">
-      <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+    <a class="social header-github" href="https://github.com/simplemuddySkibidy" target="_blank">
+      <img src="github.svg" alt="GitHub">
     </a>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero__text">
-        <p class="hero__hello">Hello, I am Nurbolot</p>
+    <section class="hero" id="home">
+      <div>
+        <p>Hello, I am Nurbolot</p>
         <h1>IOS<br>Developer</h1>
-        <a class="link-underline" href="#contact">Contact Me</a>
+        <a class="underline" href="#contact">Contact Me</a>
       </div>
-      <img class="hero__photo" src="WhatsApp Image 2026-11-05 at 23.07.12.jpeg" alt="Portrait of Nurbolot">
+      <img class="photo" src="WhatsApp Image 2026-11-05 at 23.07.12.jpeg" alt="Nurbolot">
     </section>
 
-    <section class="section" id="about">
-      <h2 class="section__title">about</h2>
-      <p class="section__text">I am an aspiring software developer with a strong foundation in programming logic and mobile technologies. Currently focused on mastering Swift, SwiftUI, and modern app architecture to build clean, high performance iOS applications.</p>
+    <section id="about">
+      <h2>about</h2>
+      <p>I am an aspiring software developer with a strong foundation in programming logic and mobile technologies. Currently focused on mastering Swift, SwiftUI, and modern app architecture to build clean, high performance iOS applications.</p>
       <ul class="stats">
-        <li><h3>IOS/Swift</h3><span>1+ years experience</span></li>
-        <li><h3>UI/UX Design</h3><span>2+ years experience</span></li>
-        <li><h3>Git/Github</h3><span>120+ Hours Experience</span></li>
+        <li><h3>IOS/Swift</h3><small>1+ years experience</small></li>
+        <li><h3>UI/UX Design</h3><small>2+ years experience</small></li>
+        <li><h3>Git/Github</h3><small>120+ Hours Experience</small></li>
       </ul>
     </section>
 
-    <section class="section" id="skills">
-      <h2 class="section__title">Skills</h2>
-      <p class="section__text">Here are some of the iOS applications and web projects I have built recently. Each project reflects my focus on clean code, responsive design, and smooth user interaction.</p>
-      <div class="skills" id="skillsGrid">
-        <button class="skill" type="button" data-skill="swift"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" alt="" width="52" height="52">Swift</button>
-        <button class="skill" type="button" data-skill="python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" width="52" height="52">Python</button>
-        <button class="skill" type="button" data-skill="java"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="" width="52" height="52">Java</button>
-        <button class="skill" type="button" data-skill="html"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" width="52" height="52">HTML</button>
-        <button class="skill" type="button" data-skill="css"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" width="52" height="52">CSS</button>
-        <button class="skill" type="button" data-skill="js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="52" height="52">JavaScript</button>
-        <button class="skill" type="button" data-skill="git"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" width="52" height="52">Git</button>
-        <button class="skill" type="button" data-skill="figma"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="" width="52" height="52">Figma</button>
+    <section id="skills">
+      <h2>Skills</h2>
+      <p>Here are some of the iOS applications and web projects I have built recently. Each project reflects my focus on clean code, responsive design, and smooth user interaction.</p>
+      <div class="skills">
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" alt="">Swift</div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="">Java</div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML</div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS</div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">Git</div>
+        <div><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="">Figma</div>
       </div>
     </section>
 
-    <section class="section" id="contact">
-      <h2 class="section__title">Contact Me</h2>
-      <p class="section__text">I would love to hear about your project and how I can help. Please fill in the form, and I'll get back to you as soon as possible.</p>
-      <form class="form" id="contactForm" novalidate>
-        <div class="field">
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" autocomplete="name">
-          <span class="error" id="nameError" aria-live="polite"></span>
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email">
-          <span class="error" id="emailError" aria-live="polite"></span>
-        </div>
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5"></textarea>
-          <span class="error" id="messageError" aria-live="polite"></span>
-        </div>
-        <button class="btn" type="submit">Send message</button>
-        <p class="form__success" id="formSuccess" role="status"></p>
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>I would love to hear about your project and how I can help. Please fill in the form, and I'll get back to you as soon as possible.</p>
+      <form id="form" novalidate>
+        <label for="name">Name</label>
+        <input id="name" type="text">
+        <span class="error" id="nameError"></span>
+
+        <label for="email">Email</label>
+        <input id="email" type="email">
+        <span class="error" id="emailError"></span>
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="5"></textarea>
+        <span class="error" id="messageError"></span>
+
+        <button class="send" type="submit">Send message</button>
+        <p id="success"></p>
       </form>
     </section>
   </main>
 
-  <footer class="footer">
-    <a class="footer__mail" href="mailto:nkarybekov228@gmail.com">nkarybekov228@gmail.com</a>
-    <div class="socials">
-      <a href="https://t.me/Ueudbя" target="_blank" rel="noopener" aria-label="Telegram">
-        <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.6 8.2-1.9 8.9c-.1.6-.5.8-1 .5l-2.8-2.1-1.4 1.3c-.2.2-.3.3-.6.3l.2-2.9 5.3-4.8c.2-.2 0-.3-.3-.1L8.6 13l-2.8-.9c-.6-.2-.6-.6.1-.9l11-4.2c.5-.2 1 .1.7.9z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/ssaul_goodman?mdxt=MTE2NXNkNWh1dDlteA%3D%3D&utm_source=qr/" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-      </a>
-      <a href="https://github.com/simplemuddySkibidy" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
-      </a>
+  <footer>
+    <a href="mailto:nkarybekov228@gmail.com">nkarybekov228@gmail.com</a>
+    <div>
+      <a class="social" href="https://t.me/Ueudb" target="_blank"><img src="telegram.svg" alt="Telegram"></a>
+      <a class="social" href="https://www.instagram.com/ssaul_goodman?mdxt=MTE2NXNkNWh1dDlteA%3D%3D&utm_source=qr" target="_blank"><img src="instagram.svg" alt="Instagram"></a>
+      <a class="social" href="https://github.com/simplemuddySkibidy" target="_blank"><img src="github.svg" alt="GitHub"></a>
     </div>
   </footer>
 
