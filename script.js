@@ -1,83 +1,115 @@
-// 1. Theme toggle (saved in localStorage)
-const root = document.documentElement;
-const themeBtn = document.getElementById('themeToggle');
-function applyTheme(theme) {
-  root.setAttribute('data-theme', theme);
-  themeBtn.setAttribute('aria-pressed', theme === 'light');
-  localStorage.setItem('theme', theme);
-}
-applyTheme(localStorage.getItem('theme') || 'dark');
-themeBtn.addEventListener('click', () => {
-  applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-});
+/* ---------- 1. Light / dark theme ---------- */
+const themeButton = document.getElementById('theme');
 
-// 2. Mobile menu
-const burger = document.getElementById('burger');
-const nav = document.getElementById('nav');
-function setMenu(open) {
-  nav.classList.toggle('open', open);
-  burger.setAttribute('aria-expanded', open);
-  burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-}
-burger.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
-nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-
-// 3. Form validation
-const form = document.getElementById('contactForm');
-const success = document.getElementById('formSuccess');
-const rules = {
-  name: v => v.trim().length >= 2 ? '' : 'Enter your name (at least 2 characters).',
-  email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'Enter a valid email, e.g. name@example.com.',
-  message: v => v.trim().length >= 10 ? '' : 'Message must be at least 10 characters.'
-};
-function validateField(id) {
-  const input = document.getElementById(id);
-  const msg = rules[id](input.value);
-  document.getElementById(id + 'Error').textContent = msg;
-  input.closest('.field').classList.toggle('invalid', msg !== '');
-  return msg === '';
-}
-Object.keys(rules).forEach(id => {
-  document.getElementById(id).addEventListener('input', () => { success.textContent = ''; validateField(id); });
-});
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  const results = Object.keys(rules).map(validateField);
-  if (results.every(Boolean)) {
-    success.textContent = 'Thank you! Your message was filled in correctly.';
-    form.reset();
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);   // remember the choice
+  if (theme === 'dark') {
+    themeButton.textContent = '☾';
   } else {
-    success.textContent = '';
-    form.querySelector('.invalid input, .invalid textarea').focus();
+    themeButton.textContent = '☀';
+  }
+}
+
+// on page load: use saved theme, or dark if nothing is saved
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  setTheme('light');
+} else {
+  setTheme('dark');
+}
+
+themeButton.addEventListener('click', function () {
+  const current = document.documentElement.getAttribute('data-theme');
+  if (current === 'dark') {
+    setTheme('light');
+  } else {
+    setTheme('dark');
   }
 });
 
-const skillInfo = {
-  swift: ['Swift', '1+ years', 'Main language for iOS apps. I use it with SwiftUI and clean app architecture.'],
-  python: ['Python', 'Learning basics', 'Used for scripts and learning programming logic.'],
-  java: ['Java', 'Learning basics', 'Used to study object-oriented programming.'],
-  html: ['HTML', '2+ years', 'Semantic markup: header, nav, main, section, footer.'],
-  css: ['CSS', '2+ years', 'Responsive layouts with Flexbox and Grid, themes via CSS variables.'],
-  js: ['JavaScript', '1+ years', 'Interactive pages: menus, forms, theme switching, modals.'],
-  git: ['Git', '120+ hours', 'Version control and GitHub workflow: branches, commits, pull requests.'],
-  figma: ['Figma', '2+ years', 'UI/UX design: desktop and mobile layouts, components, prototypes.']
-};
-const modal = document.getElementById('modal');
-let lastFocus = null;
-function openModal(key) {
-  const [title, level, text] = skillInfo[key];
-  document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalLevel').textContent = 'Experience: ' + level;
-  document.getElementById('modalText').textContent = text;
-  lastFocus = document.activeElement;
-  modal.hidden = false;
-  document.getElementById('modalClose').focus();
+
+/* ---------- 2. Mobile menu ---------- */
+const burger = document.getElementById('burger');
+const nav = document.getElementById('nav');
+
+// click on ☰ opens or closes the menu
+burger.addEventListener('click', function () {
+  nav.classList.toggle('open');
+});
+
+// click on any menu link closes the menu
+const links = document.querySelectorAll('nav a');
+links.forEach(function (link) {
+  link.addEventListener('click', function () {
+    nav.classList.remove('open');
+  });
+});
+
+
+/* ---------- 3. Form validation ---------- */
+const form = document.getElementById('form');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
+const success = document.getElementById('success');
+
+// shows an error under the field (or clears it if text is empty)
+function setError(field, text) {
+  document.getElementById(field.id + 'Error').textContent = text;
+  if (text === '') {
+    field.classList.remove('invalid');
+  } else {
+    field.classList.add('invalid');
+  }
 }
-function closeModal() {
-  modal.hidden = true;
-  if (lastFocus) lastFocus.focus();
+
+// each check returns true (ok) or false (error)
+function checkName() {
+  if (nameInput.value.trim().length < 2) {
+    setError(nameInput, 'Enter your name (at least 2 characters)');
+    return false;
+  }
+  setError(nameInput, '');
+  return true;
 }
-document.querySelectorAll('.skill').forEach(b => b.addEventListener('click', () => openModal(b.dataset.skill)));
-document.getElementById('modalClose').addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+function checkEmail() {
+  const email = emailInput.value.trim();
+  if (!email.includes('@') || !email.includes('.')) {
+    setError(emailInput, 'Enter a valid email, for example name@example.com');
+    return false;
+  }
+  setError(emailInput, '');
+  return true;
+}
+
+function checkMessage() {
+  if (messageInput.value.trim().length < 10) {
+    setError(messageInput, 'Message must be at least 10 characters');
+    return false;
+  }
+  setError(messageInput, '');
+  return true;
+}
+
+// check a field again while the user is typing
+nameInput.addEventListener('input', checkName);
+emailInput.addEventListener('input', checkEmail);
+messageInput.addEventListener('input', checkMessage);
+
+// when the form is sent
+form.addEventListener('submit', function (event) {
+  event.preventDefault();   // do not reload the page
+
+  const nameOk = checkName();
+  const emailOk = checkEmail();
+  const messageOk = checkMessage();
+
+  if (nameOk && emailOk && messageOk) {
+    success.textContent = 'Thank you! The form was filled in correctly.';
+    form.reset();
+  } else {
+    success.textContent = '';
+  }
+});
